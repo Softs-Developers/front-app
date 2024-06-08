@@ -2,8 +2,9 @@
 <html lang="en" ng-app="authApp">
 <head>
     <meta charset="UTF-8">
-    <title>AngularJS Authentication</title>
-    <script src="node_modules/angular/angular.min.js"></script>
+    <title>Web JHT</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="lib/angular-route.min.js"></script>    
     <script src="app.js"></script>
     <script src="controllers/authController.js"></script>
     <script src="services/authService.js"></script>
@@ -15,6 +16,7 @@
             <div>
                 <label for="username">Username:</label>
                 <input type="text" id="username" ng-model="user.username" required>
+                
             </div>
             <div>
                 <label for="password">Password:</label>

@@ -1,4 +1,4 @@
-
+// controllers/authController.js
 angular.module('authApp')
 .controller('AuthController', ['$scope', 'AuthService', function($scope, AuthService) {
     $scope.user = {};
@@ -8,11 +8,12 @@ angular.module('authApp')
         AuthService.login($scope.user)
         .then(function(response) {
             // Manejar la respuesta del servidor
-            if(response.data.token) {
+            if (response.data.token) {
                 localStorage.setItem('token', response.data.token);
-                // Redireccionar al panel de administración
+                // Aquí puedes redireccionar al panel de administración o mostrar un mensaje de éxito
             } else {
                 $scope.error = 'Login failed';
+                
             }
         })
         .catch(function(error) {

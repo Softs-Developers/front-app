@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="authApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS Authentication</title>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers/authController.js"></script>
+    <script src="services/authService.js"></script>
+</head>
+<body ng-controller="AuthController">
+    <div class="container">
+        <h2>Login</h2>
+        <form ng-submit="login()">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" ng-model="user.username" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" ng-model="user.password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <p ng-if="error">{{error}}</p>
+    </div>
+</body>
+</html>

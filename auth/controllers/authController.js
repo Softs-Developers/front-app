@@ -12,11 +12,13 @@ angular.module('authApp')
               
                 localStorage.setItem('token', response.data.token);
                 sessionStorage.setItem('sessionId', response.data.sessionId);
-                window.location.href = '/home';
+                // voy a adminPanel
+                window.location.href = 'adminPanel.html';
+                 
 
             } else { 
                 
-                $scope.error = 'Login failed';
+                $scope.error = 'Login failed debido a  ' + response.data.message;
                 
             }
         })

@@ -1,10 +1,311 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+
 <head>
-    <title>Mi Página</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/b.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="lib/angular-route.min.js"></script>    
+    <script src="app.js"></script>
+    <script src="controllers/adminController.js"></script>
+    <script src="services/authService.js"></script>
+
+    <title>Dashboard</title>
 </head>
+
 <body>
-    <h1>Hola, mundo!</h1>
-    <p>Esta es una página web básica.</p>
+
+
+    <nav class="navbar navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="media/blanco.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+
+            </a>
+            <button class="btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Opciones de administrador </button>
+        </div>
+
+
+
+    </nav>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 text-center mb-4">
+                <img src="media/logo2.png" alt="Logo de tu empresa" class="img-fluid">
+            </div>
+          <!---------- USUARIOS FORM      -------------->
+            <form id="formCrearUser" style="display:none ">
+                <div class="mb-3">
+                    <h2>Crear Usuario</h2>
+                    <label for="exampleInputEmail1" class="form-label">Nombre </label>
+                    <input id="Nombre"class="form-control" type="text" placeholder="Default input" aria-label="default input example">
+                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                  <input id="correo" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input id="password" type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Crear usuario</button>
+              </form>
+              <form id="formModificarUser" style="display:none ">
+                <div class="mb-3">
+                    <h2>Modificar Usuario</h2>
+                    <label for="nombreUserCAmbiar" class="form-label">Nombre Usuario a cambiar</label>
+                    <input  id="nombreUserCAmbiar" class="form-control" list="datalistOptions" id="categoria" placeholder="Type to search...">
+                    <datalist id="datalistOptions">
+                        <div 
+                        id="DataListUser1">
+
+                        </div>
+                        
+                    
+
+                    </datalist>
+                    <label for="NuevoNombre" class="form-label">Nuevo Nombre</label>
+                    <input id="NuevoNombre"class="form-control" type="text" placeholder="Default input" aria-label="default input example">
+                </div>
+                
+                <button type="submit" class="btn btn-warning">Modificar usuario</button>
+            </form>
+              
+                
+            <form id="formDeleteUser" style="display:none ">
+                <div class="mb-3">
+                    <h2>Elimiar Usuario </h2>
+                    <input id="nombreUserEliminar" class="form-control" list="datalistOptions" class="NombreDeusuarios" placeholder="Type to search...">
+                    <datalist id="datalistOptions">
+                        <div 
+                        id="DataListUser2">
+
+                        </div>
+                        
+                    
+
+                    </datalist>
+                </div>
+                
+                <button type="submit" class="btn btn-danger">ELIMINAR</button>
+            </form>
+            <!---------- CATEGORIAS FORM      -------------->
+            <form id="formCrearCategorias" style="display:none ">
+                <div class="mb-3">
+                    <h2>Crear Categoria</h2>
+                    <label for="formCrearCategorias">introduzca nombre categoria </label>
+                    <input type="text" class="form-control" id="NombreNuevaCategoria" placeholder="escriba aqui">
+                    <button type="submit" class="btn btn-primary">Crear Categoria</button>
+                </div>
+            </form>
+            <form id="formModificarCategorias" style="display:none ">
+                <div class="mb-3">
+                    <h2>Modificar Categoria</h2>
+                    <label for="nombreCategoriaCambiar" class="form-label">Nombre Categoria a cambiar</label>
+                    <input  id="nombreCategoriaCambiar" class="form-control" list="datalistOptions2"  placeholder="Type to search...">
+                    <datalist id="datalistOptions2">
+                        <div 
+                        id="DataListCategoria1">
+
+                        </div>
+                        
+                    
+
+                    </datalist>
+                    <label for="NuevoNombreCategoria" class="form-label">Nuevo Nombre</label>
+                    <input id="NuevoNombreCategoria"class="form-control" type="text" aria-label="default input example">
+                </div>
+                
+                <button type="submit" class="btn btn-warning">Modificar Categoria</button>
+            </form>
+            <form id="formDeleteCategorias" style="display:none ">
+                <div class="mb-3">
+                    <h2>Elimiar Categoria </h2>
+                    <input id="nombreCategoriaEliminar" class="form-control" list="datalistOptions2" class="NombreDeusuarios" placeholder="Type to search...">
+                    <datalist id="datalistOptions2">
+                        <div 
+                        id="DataListCategoria2">
+
+                        </div>
+                        
+                    
+
+                    </datalist>
+                    
+                </div>
+                <div class="alert alert-info" role="alert">
+                    Para saber que categorias hay , pulsa en "Informacion"!!!.
+                  </div>
+                <button type="submit" class="btn btn-danger">ELIMINAR</button>
+            
+            <!---------- vIDEOS FORM      -------------->
+            </form>
+            <form id="formCrearVideos" style="display:none ">
+                <div class="mb-3">
+                    <h2>Crear Video</h2>
+                    <label for="NombreNuevoVideo">introduzca nombre video </label>
+                    <input type="text" class="form-control" id="NombreNuevoVideo" placeholder="escriba aqui">
+
+                    <label for="URLNuevoVideo">introduzca URL video </label>
+                    <input type="text" class="form-control" id="URLNuevoVideo" placeholder="escriba aqui">
+
+                    <label for="formCrearVideos">Eliga categorias </label>
+                    <input type="text" class="form-control" id="CategoriaNuevoVideo" list="DataListCrearVideoMostrarCategoria" aria-label="default input example">
+                    <datalist id="DataListCrearVideoMostrarCategoria" >
+                        
+                        
+                    </datalist>
+                    
+                   
+                    <button type="submit" class="btn btn-primary">Crear Video</button>
+                
+            </form>
+            
+            <form id="formModificarVideos" style="display:none ">
+                <div class="mb-3">
+                    <h2>Modificar Video</h2>
+                    <label for="nombreVideoCambiar" class="form-label">Nombre Video a cambiar</label>
+                    <input  id="nombreVideoCambiar" class="form-control" list="datalistOptions3"  placeholder="Type to search...">
+                    <datalist id="datalistOptions3">
+                        
+                        
+                    
+
+                    </datalist>
+
+                    <label for="NuevoNombreVideo" class="form-label ">Nuevo Nombre</label>
+                    <input id="NuevoNombreVideo"class="form-control" type="text" aria-label="default input example">
+                    <label for="NuevoURLVideo" class="form-label ">Nueva URL</label>
+                    <input id="NuevaURLVideo"class="form-control" type="text" aria-label="default input example">
+                    <button type="submit" class="btn btn-warning">Modificar Video</button>
+                </div>
+             </form>       
+
+            <form id="formDeleteVideos" style="display:none ">
+                <div class="mb-3">
+                    <h2>Elimiar Video </h2>
+                    <input id="nombreVideoEliminar" class="form-control" list="datalistOptions3" class="NombreDeusuarios" placeholder="Type to search...">
+                    <datalist id="datalistOptions3">
+                       
+                        
+                    
+
+                    </datalist>
+                    
+                </div>
+                <div class="alert alert-info" role="alert">
+                    Para saber que videos hay , pulsa en "Informacion"!!!.
+                  </div>
+                <button type="submit" class="btn btn-danger">ELIMINAR</button> 
+            </form>
+               
+    </div>
+    <div style="display: flex;">
+        <div id="info1" style="display: inline-block;"></div>
+        <div id="info2" style="display: inline-block;"></div>
+        <div id="info3" style="display: inline-block;"></div>
+    </div>
+
+    
+   <!--<button class="btn btn-danger" type="button" onclick="cerrarSesion()">Cerrar Sesion</button>--> 
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Opciones de administrador</h5>
+    
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2>VIDEOS<span class="badge text-bg-secondary">CRUD</span></h2>
+    <button  type="button" class="btn btn-primary btn-sm" onclick="crearVideos()" >Crear</button>
+    
+    <button type="button" class="btn btn-warning btn-sm " onclick="ModificarVideos()">Modificar</button>
+    <br>
+    <button type="button" class="btn btn-danger btn-sm" onclick="DeletVideos()">Elimiar</button>
+    <button type="button" class="btn btn-secondary btn-sm"onclick="InfoVideos()">información</button>
+   
+    
+    
+    <h2>Categorias<span class="badge text-bg-secondary">CRUD</span></h2>
+    <button type="button" class="btn btn-primary btn-sm" onclick="crearCategorias()">Crear</button>
+    
+    <button type="button" class="btn btn-warning btn-sm "onclick="modificarCategorias()">Modificar</button>
+    <br>
+    <button type="button" class="btn btn-danger btn-sm"onclick="deleteCategorias()">Elimiar</button>
+    <button type="button" class="btn btn-secondary btn-sm"onclick="infoCategorias()">información  </button>
+     
+    
+    <h2>Usuarios<span class="badge text-bg-secondary">CRUD</span></h2>
+    <button type="button" class="btn btn-primary btn-sm"onclick="crearUsuarios()">Crear</button>
+     
+    <button type="button" class="btn btn-warning btn-sm "onclick="modificarUsuarios()">Modificar</button>
+    <br>
+    <button type="button" class="btn btn-danger btn-sm"onclick="deleteUsuarios()">Elimiar</button>
+    <button type="button" class="btn btn-secondary btn-sm"onclick="infoUsuarios()">información</button>
+     
+
+   
+  </div>
+   
+   
+</div>
+    
+    
+   
+
+
+    </div>
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="index.html" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                    <img src="media/azul.png">
+                </a>
+                <span class="mb-3 mb-md-0 text-muted">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">© 2024 Laboratorio, Inc.</font>
+                    </font>
+                </span>
+            </div>
+
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <li class="ms-3"><a class="text-muted">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Hecho por:
+                                 </font>
+                        </font>
+                    </a></li>
+    
+                <li class="ms-3"><a class="text-muted" href="mailto:javier.verdu2@edu.upct.es?Subject=Me ha gustado vuestro trabajo de Laboratorio">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">javier.verdu2@edu.upct.es</font>
+                        </font>
+                    </a></li>
+                    
+                <li class="ms-3"><a class="text-muted" href="mailto:hamza.dhmiddouch@edu.upct.es?Subject=Me ha gustado vuestro trabajo de Laboratorio">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">hamza.dhmiddouch@edu.upct.es</font>
+                        </font>
+                    </a></li>
+                <li class="ms-3"><a class="text-muted" href="mailto:tomas.sanchez2@edu.upct.es?Subject=Me ha gustado vuestro trabajo de Laboratorio">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">tomas.sanchez2@edu.upct.es</font>
+                        </font>
+                    </a></li>
+        </footer>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="js/admin.js"></script>
 </body>
+
 </html>

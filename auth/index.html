@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="authApp">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
     <title>Web JHT</title>
@@ -9,17 +9,21 @@
     <script src="controllers/authController.js"></script>
     <script src="services/authService.js"></script>
 </head>
-<body ng-controller="authController">
-    <div class="container">
-        <h2>Login</h2>
-        <form ng-submit="login()">
-            <div>
-                <input type="text" ng-model="user.username" placeholder="Username">
-                <input type="password" ng-model="user.password" placeholder="Password">
-            </div>
-            <button type="submit">Login</button>
-        </form>
-        <p ng-if="error">{{error}}</p>
+<body >
+    <div ng-app="authApp">
+        <div ng-controller="authController">
+     <div class="container">
+         <h2>Login</h2>
+         <form ng-submit="login()">
+                <div>
+                  <input type="text" ng-model="user.username" placeholder="Username">
+                  <input type="password" ng-model="user.password" placeholder="Password">
+             </div>
+              <button type="submit">Login</button>
+         </form>
+          <p ng-if="error">{{error}}</p>
+        </div>
+    </div>
     </div>
 </body>
 </html>

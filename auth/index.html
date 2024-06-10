@@ -3,27 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Web JHT</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link href="css/a.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/a.css">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="lib/angular-route.min.js"></script>    
     <script src="app.js"></script>
     <script src="controllers/authController.js"></script>
     <script src="services/authService.js"></script>
+ 
+       
+
+
 </head>
 <body >
     <div ng-app="authApp">
         <div ng-controller="authController">
-     <div class="container">
-         <h2>Login</h2>
-         <form ng-submit="login()">
-                <div>
-                  <input type="text" ng-model="user.username" placeholder="Username">
-                  <input type="password" ng-model="user.password" placeholder="Password">
-             </div>
-              <button type="submit">Login</button>
+            <form ng-submit="login()">
+                <img class="mb-4" src="media/azul.png" alt="" width="72" height="57">
+                <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+          
+                <div class="form-floating">
+                    <input type="text" class="form-control"  ng-model="user.username" id="floatingInput" placeholder="Username">
+                    <label for="floatingInput">Username</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" ng-model="user.password"  id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                  </div> 
+                
+                  
+                  <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+                  <p class="mt-5 mb-3 text-body-secondary">&copy; 2020–2024</p>
+             
+            
          </form>
           <p ng-if="error">{{error}}</p>
-        </div>
+         
     </div>
-    </div>
-</body>
+     
+     
+        
+    
+        
+       
+    
+        
+        
+      
+
 </html>

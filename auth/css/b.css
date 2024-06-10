@@ -1,0 +1,12 @@
+.container img {
+    width: 30%;
+}
+
+#alerta {
+    display: none;
+}
+ 
+.card {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }

@@ -1,23 +1,16 @@
 angular.module('authApp').factory('authService', ['$http', function($http) {
     var service = {};
 
-    service.login = function(username, password) {
+    service.login = function(user) {
         return $http({
             method: 'POST',
             url: 'http://localhost:8080/login',
             data: {
-                user: username,
-                passwd: password
-                
+                user: user.username,
+                passwd: user.password
+
             }
-        }).then(function(response) {
-            if (response.data.success) {
-                sessionStorage.setItem('sessionId', response.data.sessionId);
-                
-            } else {
-                throw new Error(response.data.message);
-                
-            }
+            
         });
     };
 

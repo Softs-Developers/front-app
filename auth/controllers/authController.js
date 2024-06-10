@@ -7,13 +7,15 @@ angular.module('authApp')
     $scope.login = function() {
         authService.login($scope.user)
         .then(function(response) {
-            
+            console.log(response);
             if (response.data.token) {
-                console.log("llega token")
+              
                 localStorage.setItem('token', response.data.token);
-                
+                sessionStorage.setItem('sessionId', response.data.sessionId);
+                window.location.href = '/home';
+
             } else { 
-                 console.log("no llega token")
+                
                 $scope.error = 'Login failed';
                 
             }

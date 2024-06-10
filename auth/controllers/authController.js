@@ -1,23 +1,35 @@
 // controllers/authController.js
 angular.module('authApp')
-.controller('AuthController', ['$scope', 'AuthService', function($scope, AuthService) {
+.controller('authController', ['$scope', 'authService', function($scope, authService) {
     $scope.user = {};
     $scope.error = '';
 
     $scope.login = function() {
-        AuthService.login($scope.user)
+        authService.login($scope.user)
         .then(function(response) {
-            // Manejar la respuesta del servidor
+            
             if (response.data.token) {
+                console.log("llega token")
                 localStorage.setItem('token', response.data.token);
-                // Aquí puedes redireccionar al panel de administración o mostrar un mensaje de éxito
-            } else {
+                
+            } else { 
+                 console.log("no llega token")
                 $scope.error = 'Login failed';
                 
             }
         })
         .catch(function(error) {
-            $scope.error = 'Login failed';
+            $scope.error = 'fallo login'+ error.message;
+            console.log(error.message);
         });
     };
+
+    // $scope.logout = function() {
+    //     authService.logout().then(function() {
+    //       windows.location.href = '/login';
+    //     }).catch(function(error) {
+            
+    //         $scope.error = error.message;
+    //     });
+    // };
 }]);

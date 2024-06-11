@@ -13,14 +13,14 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="lib/angular-route.min.js"></script>    
-    <script src="app.js"></script>
+    <script src="app2.js"></script>
     <script src="controllers/adminController.js"></script>
     <script src="services/adminService.js"></script>
 
     <title>Dashboard</title>
 </head>
 
-<body>
+<body ng-controller="adminController">
 
 
     <nav class="navbar navbar-dark bg-primary fixed-top">
@@ -35,7 +35,7 @@
 
 
     </nav>
-<div ng-controller="adminController">
+ 
     <div class="container mt-5">
         <div class="row">
             <div class="col-12 text-center mb-4">
@@ -211,7 +211,7 @@
                
     </div>
      
-</div>
+
 
 
 
@@ -231,12 +231,12 @@
   </div>
   <div class="offcanvas-body">
     <h2>VIDEOS<span class="badge text-bg-secondary">CRUD</span></h2>
-    <button  type="button" class="btn btn-primary btn-sm" onclick="crearVideos()" >Crear</button>
+    <button  type="button" class="btn btn-primary btn-sm"onclick="crearVideos() " >Crear</button>
     
     <button type="button" class="btn btn-warning btn-sm " onclick="ModificarVideos()">Modificar</button>
     <br>
     <button type="button" class="btn btn-danger btn-sm" onclick="DeletVideos()">Elimiar</button>
-    <button type="button" class="btn btn-secondary btn-sm"onclick="InfoVideos()">información</button>
+    <button type="button" class="btn btn-secondary btn-sm"ng-click="GetVideos()">información</button>
    
     
     
@@ -258,8 +258,8 @@
     <button type="button" class="btn btn-secondary btn-sm"onclick="infoUsuarios()">información</button>
      
 
-   
-  </div>
+ 
+ 
    
    
 </div>

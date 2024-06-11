@@ -10,8 +10,8 @@ angular.module('authApp')
             console.log(response);
             if (response.data.token) {
               
-                localStorage.setItem('token', response.data.token);
-                sessionStorage.setItem('sessionId', response.data.sessionId);
+              //  localStorage.setItem('token', response.data.token); esto no tiene sentido xd
+                sessionStorage.setItem('sessionId', response.data.token);
                 // voy a adminPanel
                 window.location.href = 'adminPanel.html';
                  

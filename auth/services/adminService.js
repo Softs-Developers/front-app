@@ -78,7 +78,7 @@ angular.module('adminApp').factory('adminService', ['$http', function($http) {
         return $http({
             method: 'GET',
             url: 'http://localhost:8080/getVideos',
-            session_id: session_id,
+           data:{ session_id: this.session_id},
         });
     }
     Action.CreateVideo = function(video) {

@@ -43,6 +43,11 @@
             </div>
           <!---------- USUARIOS FORM      -------------->
          
+            <!-- div para alertas general-->
+            <div class="alert-info alert-dismissible " ng-model="alert">
+                {{alert}}
+             </div>
+
 
             <form id="formCrearUser" style="display:none ">
                 <div class="mb-3">
@@ -150,20 +155,24 @@
             
             <!---------- vIDEOS FORM      -------------->
             </form>
-            <form id="formCrearVideos" style="display:none ">
+            <form id="formCrearVideos" style="display:none " ng-submit="CreateVideo()">
                 <div class="mb-3">
                     <h2>Crear Video</h2>
                     <label for="NombreNuevoVideo">introduzca nombre video </label>
-                    <input type="text" class="form-control" id="NombreNuevoVideo" placeholder="escriba aqui">
+                    <input type="text" class="form-control" ng-model="video.name"  placeholder="escriba aqui">
 
                     <label for="URLNuevoVideo">introduzca URL video </label>
-                    <input type="text" class="form-control" id="URLNuevoVideo" placeholder="escriba aqui">
+                    <input type="text" class="form-control"   ng-model="video.url" placeholder="escriba aqui">
 
                     <label for="formCrearVideos">Eliga categorias </label>
-                    <input type="text" class="form-control" id="CategoriaNuevoVideo" list="DataListCrearVideoMostrarCategoria" aria-label="default input example">
+                    <input type="text" class="form-control" ng-model="video.category" list="DataListCrearVideoMostrarCategoria" aria-label="default input example">
                     <datalist id="DataListCrearVideoMostrarCategoria" >
-                        
-                        
+                        <div ng-repeat=" x in Categorias">   
+                        <option value="{{x.name}}"></option>
+                         "{{x.name}}"
+                        esto no va o que 
+                        </div>
+                         
                     </datalist>
                     
                    
@@ -208,7 +217,9 @@
                   </div>
                 <button type="submit" class="btn btn-danger">ELIMINAR</button> 
             </form>
-               
+            <div class="alert alert-danger" ng-if="error">
+                {{error}}
+             </div>
     </div>
      
 
@@ -246,7 +257,7 @@
     <button type="button" class="btn btn-warning btn-sm "onclick="modificarCategorias()">Modificar</button>
     <br>
     <button type="button" class="btn btn-danger btn-sm"onclick="deleteCategorias()">Elimiar</button>
-    <button type="button" class="btn btn-secondary btn-sm"ng-click="getCategories()">información  </button>
+    <button type="button" class="btn btn-secondary btn-sm"ng-click="GetCategories()">información  </button>
      
     
     <h2>Usuarios<span class="badge text-bg-secondary">CRUD</span></h2>

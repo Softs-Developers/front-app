@@ -88,7 +88,7 @@ angular.module('adminApp').factory('adminService', ['$http', function($http) {
             method: 'GET',
             url: 'http://localhost:8080/getVideos',
             headers: { 'Authorization': 'Bearer ' + session_id },
-           data:{ token: this.session_id},
+           
         });
     }
     Action.CreateVideo = function(video) {

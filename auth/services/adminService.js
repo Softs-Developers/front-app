@@ -9,14 +9,14 @@ angular.module('adminApp').factory('adminService', ['$http', function($http) {
             session_id: session_id,
         });
     };
-    servisce.CreateUser = function(user) {
+    Action.CreateUser = function(user) {
         return $http({
             method: 'POST',
             url: 'http://localhost:8080/postUsuario',
             data: {
-                postNameDeUsuario: user.username,
-                postpasswddelUsuario: user.password,
-                postMailDelUsuario: user.email,
+                postNameDeUsuario: user.nombre,
+                postMailDeUsuario: user.password,
+                postPasswdDelUsuario: user.correo,
             }
         });
     };
@@ -47,7 +47,7 @@ angular.module('adminApp').factory('adminService', ['$http', function($http) {
             session_id: session_id,
         });
     };
-    servisce.CreateCategory = function(category) {
+    Action.CreateCategory = function(category) {
         return $http({
             method: 'POST',
             url: 'http://localhost:8080/postCategorias',

@@ -15,4 +15,17 @@ angular.module('authApp')
             console.log(error.message);
         });
     };
+
+
+    $scope.GetUsers = function() {
+        admiService.Action.GetUsers()
+        .then(function(response) {
+            console.log(response);
+           
+        })
+        .catch(function(error) {
+            $scope.error = 'Failed to get users: ' + error.message;
+            console.log(error.message);
+        });
+    };
 }]);

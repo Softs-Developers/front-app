@@ -19,7 +19,7 @@ angular.module('authApp')
 
             } else { 
                 
-                $scope.error = 'Login failed debido a  ' + response.data.message;
+                $scope.error = 'Login failed debido a  ' + response.data.errormsg;
                 
             }
         })

@@ -29,7 +29,10 @@
                 <img src="media/blanco.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
 
             </a>
-            <button class="btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Opciones de administrador </button>
+            <div class="ml-auto">
+                <button class="btn btn-success me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Opciones de administrador </button>
+                <button class="btn btn-danger" type="button" ng-click="logout()">Logout</button>
+            </div>
         </div>
 
 
@@ -103,7 +106,7 @@
             <form id="formCrearCategorias" style="display:none ">
                 <div class="mb-3">
                     <h2>Crear Categoria</h2>
-                    <label for="formCrearCategorias">introduzca nombre categoria </label>
+                    <label for="formCrearCategorias">Introduzca nombre categoria </label>
                     <input type="text" class="form-control" id="NombreNuevaCategoria" placeholder="escriba aqui">
                     <button type="submit" class="btn btn-primary">Crear Categoria</button>
                 </div>
@@ -153,10 +156,10 @@
             <form id="formCrearVideos" style="display:none ">
                 <div class="mb-3">
                     <h2>Crear Video</h2>
-                    <label for="NombreNuevoVideo">introduzca nombre video </label>
+                    <label for="NombreNuevoVideo">Introduzca nombre video </label>
                     <input type="text" class="form-control" id="NombreNuevoVideo" placeholder="escriba aqui">
 
-                    <label for="URLNuevoVideo">introduzca URL video </label>
+                    <label for="URLNuevoVideo">Introduzca URL video </label>
                     <input type="text" class="form-control" id="URLNuevoVideo" placeholder="escriba aqui">
 
                     <label for="formCrearVideos">Eliga categorias </label>

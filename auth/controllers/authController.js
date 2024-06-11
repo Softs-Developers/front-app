@@ -13,6 +13,7 @@ angular.module('authApp')
               //  localStorage.setItem('token', response.data.token); esto no tiene sentido xd
                 sessionStorage.setItem('sessionId', response.data.token);
                 // voy a adminPanel
+                console.log (response.data.token);
                 window.location.href = 'adminPanel.html';
                  
 

@@ -6,6 +6,7 @@ angular.module('adminApp').factory('adminService', ['$http', function($http) {
         return $http({
             method: 'GET',
             url: 'http://localhost:8080/getUsuarios',
+            headers: { 'Authorization': 'Bearer ' + session_id },
             session_id: session_id,
         });
     };
@@ -13,6 +14,7 @@ angular.module('adminApp').factory('adminService', ['$http', function($http) {
         return $http({
             method: 'POST',
             url: 'http://localhost:8080/postUsuario',
+            headers: { 'Authorization': 'Bearer ' + session_id },
             data: {
                 postNameDeUsuario: user.username,
                 postpasswddelUsuario: user.password,
@@ -24,6 +26,7 @@ angular.module('adminApp').factory('adminService', ['$http', function($http) {
         return $http({
             method: 'DELETE',
             url: 'http://localhost:8080/deleteUsuarios',
+            headers: { 'Authorization': 'Bearer ' + session_id },
             data: {
                 deleteIDUsuario: user.userID,
             }
@@ -33,6 +36,7 @@ angular.module('adminApp').factory('adminService', ['$http', function($http) {
         return $http({
             method: 'PATCH',
             url: 'http://localhost:8080/users',
+            headers: { 'Authorization': 'Bearer ' + session_id },
             data: {
                 user: user.username,
                 passwd: user.password
@@ -44,13 +48,15 @@ angular.module('adminApp').factory('adminService', ['$http', function($http) {
         return $http({
             method: 'GET',
             url: 'http://localhost:8080/getCategorias',
-            session_id: session_id,
+            headers: { 'Authorization': 'Bearer ' + session_id },
+             
         });
     };
     Action.CreateCategory = function(category) {
         return $http({
             method: 'POST',
             url: 'http://localhost:8080/postCategorias',
+            headers: { 'Authorization': 'Bearer ' + session_id },
             data: {
                 nameCategoria: category.name,
             }
@@ -60,6 +66,7 @@ angular.module('adminApp').factory('adminService', ['$http', function($http) {
         return $http({
             method: 'DELETE',
             url: 'http://localhost:8080/deleteCategorias',
+            headers: { 'Authorization': 'Bearer ' + session_id },
             data: {
                 deleteNameCategoria: category.name,
             }
@@ -69,22 +76,26 @@ angular.module('adminApp').factory('adminService', ['$http', function($http) {
         return $http({
             method: 'PATCH',
             url: 'http://localhost:8080/categories',
+            headers: { 'Authorization': 'Bearer ' + session_id },
             data: {
                 category: category.name,
             }
         });
     }
     Action.GetVideos = function() {
+       
         return $http({
             method: 'GET',
             url: 'http://localhost:8080/getVideos',
-           data:{ session_id: this.session_id},
+            headers: { 'Authorization': 'Bearer ' + session_id },
+           data:{ token: this.session_id},
         });
     }
     Action.CreateVideo = function(video) {
         return $http({
             method: 'POST',
             url: 'http://localhost:8080/postVideo',
+            headers: { 'Authorization': 'Bearer ' + session_id },
             data: {
                 postNameDeVideo: video.name,
                 postUrlDeVideo: video.url,
@@ -96,6 +107,7 @@ angular.module('adminApp').factory('adminService', ['$http', function($http) {
         return $http({
             method: 'DELETE',
             url: 'http://localhost:8080/deleteVideos',
+            headers: { 'Authorization': 'Bearer ' + session_id },
             data: {
                 "deleteNameVideo": "video.name",
             }
@@ -105,6 +117,7 @@ angular.module('adminApp').factory('adminService', ['$http', function($http) {
         return $http({
             method: 'PATCH',
             url: 'http://localhost:8080/videos',
+            headers: { 'Authorization': 'Bearer ' + session_id },
             data: {
                 video: video.name,
                 url: video.url,

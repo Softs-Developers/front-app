@@ -29,8 +29,11 @@
                 <img src="media/blanco.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
 
             </a>
-            <button class="btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Opciones de administrador </button>
-        </div>
+            <div class="ml-auto">
+                <button class="btn btn-success me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Opciones de administrador </button>
+                <button class="btn btn-danger" type="button" ng-click="logout()">Logout</button>
+            </div>
+         </div>
 
 
 
@@ -46,7 +49,7 @@
             <!-- div para alertas general-->
             <div class="alert-info alert-dismissible " ng-model="alert">
                 {{alert}}
-             </div>
+              </div>
 
 
             <form id="formCrearUser" style="display:none ">
@@ -75,9 +78,6 @@
                         id="DataListUser1">
 
                         </div>
-                        
-                    
-
                     </datalist>
                     <label for="NuevoNombre" class="form-label">Nuevo Nombre</label>
                     <input id="NuevoNombre"class="form-control" type="text" placeholder="Default input" aria-label="default input example">
@@ -170,7 +170,7 @@
                         <div ng-repeat=" x in Categorias">   
                         <option value="{{x.name}}"></option>
                          "{{x.name}}"
-                        esto no va o que 
+                         
                         </div>
                          
                     </datalist>
@@ -200,12 +200,16 @@
                 </div>
              </form>       
 
-            <form id="formDeleteVideos" style="display:none ">
+            <form id="formDeleteVideos" style="display:none " ng-submit="deleteVideo()">
                 <div class="mb-3">
                     <h2>Elimiar Video </h2>
-                    <input id="nombreVideoEliminar" class="form-control" list="datalistOptions3" class="NombreDeusuarios" placeholder="Type to search...">
+                    <input id="nombreVideoEliminar" class="form-control" list="datalistOptions3" class="NombreDeusuarios" placeholder="Type to search..." ng-model="video.name">
                     <datalist id="datalistOptions3">
-                       
+                        <div ng-repeat=" x in Videos">   
+                            <option value="{{x.tittle}}"></option>
+                             "{{x.title}}"
+                             
+                        </div>
                         
                     
 

@@ -80,17 +80,33 @@ angular.module('adminApp')
             console.log(error.message);
         });
 
+    
+    };
+    $scope.deleteVideo = function(video) {
+        adminService.DeleteVideo(video)
+        .then(function(response) {
+            console.log(response);
+            $scope.GetVideos();
+            $scope.alert = 'Video eliminado correctamente';
+        })
+        .catch(function(error) {
+            $scope.error = 'Error al eliminar video' + error.message;
+            console.log(error.message);
+        });
+    };
+
+
+    $scope.logout = function() { 
+        adminService.logout().then(function() {
+            $sessionStorage.removeItem('sessionId');
+            window.location.href = '/login';
+        }).catch(function(error) {
+            $scope.error = error.message;
+        });
     };
 
 
 
 
-    // $scope.logout = function() {
-    //     authService.logout().then(function() {
-    //       windows.location.href = '/login';
-    //     }).catch(function(error) {
-            
-    //         $scope.error = error.message;
-    //     });
-    // };
+     
 }]);

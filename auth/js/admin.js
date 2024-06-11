@@ -135,6 +135,7 @@ async function crearVideos() {
     }
     
    async function DeletVideos() {
+     
     if(cont3%2==0){
       formEliminarVideos.style.display = "none";
       cont3++;}

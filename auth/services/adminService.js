@@ -109,7 +109,7 @@ angular.module('adminApp').factory('adminService', ['$http', function($http) {
             url: 'http://localhost:8080/deleteVideos',
             headers: { 'Authorization': 'Bearer ' + session_id },
             data: {
-                deleteNameVideo :  video.name
+                deleteNameVideo :  video.title
             }
         });
     }

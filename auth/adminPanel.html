@@ -169,7 +169,7 @@
                     <datalist id="DataListCrearVideoMostrarCategoria" >
                         <div ng-repeat=" x in Categorias">   
                         <option value="{{x.name}}"></option>
-                         "{{x.name}}"
+                         
                          
                         </div>
                          
@@ -177,7 +177,7 @@
                     
                    
                     <button type="submit" class="btn btn-primary">Crear Video</button>
-                
+                </div>
             </form>
             
             <form id="formModificarVideos" style="display:none ">
@@ -203,11 +203,11 @@
             <form id="formDeleteVideos" style="display:none " ng-submit="deleteVideo()">
                 <div class="mb-3">
                     <h2>Elimiar Video </h2>
-                    <input id="nombreVideoEliminar" class="form-control" list="datalistOptions3" class="NombreDeusuarios" placeholder="Type to search..." ng-model="video.name">
-                    <datalist id="datalistOptions3">
+                    <input id="nombreVideoEliminar" class="form-control" list="datalistBorrarVideos" class="NombreDeusuarios" placeholder="Type to search..." ng-model="video.title">
+                    <datalist id="datalistBorrarVideos">
                         <div ng-repeat=" x in Videos">   
-                            <option value="{{x.tittle}}"></option>
-                             "{{x.title}}"
+                            <option value="{{x.title}}"></option>
+                           
                              
                         </div>
                         

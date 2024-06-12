@@ -10,39 +10,8 @@ angular.module('adminApp').factory('adminService', ['$http', function($http) {
             session_id: session_id,
         });
     };
-    Action.CreateUser = function(user) {
-        return $http({
-            method: 'POST',
-            url: 'http://localhost:8080/postUsuario',
-            headers: { 'Authorization': 'Bearer ' + session_id },
-            data: {
-                postNameDeUsuario: user.username,
-                postPasswdDelUsuario: user.password,
-                postMailDelUsuario: user.email,
-            }
-        });
-    };
-    Action.DeleteUser = function(user) {
-        return $http({
-            method: 'DELETE',
-            url: 'http://localhost:8080/deleteUsuarios',
-            headers: { 'Authorization': 'Bearer ' + session_id },
-            data: {
-                deleteIDUsuario: user.userID,
-            }
-        });
-    }
-    Action.UpdateUser = function(user) {
-        return $http({
-            method: 'PATCH',
-            url: 'http://localhost:8080/users',
-            headers: { 'Authorization': 'Bearer ' + session_id },
-            data: {
-                user: user.username,
-                passwd: user.password
-            }
-        });
-    }
+    
+    
 
     Action.GetCategories = function() {
         return $http({
@@ -52,36 +21,8 @@ angular.module('adminApp').factory('adminService', ['$http', function($http) {
              
         });
     };
-    Action.CreateCategory = function(category) {
-        return $http({
-            method: 'POST',
-            url: 'http://localhost:8080/postCategorias',
-            headers: { 'Authorization': 'Bearer ' + session_id },
-            data: {
-                nameCategoria: category.name,
-            }
-        });
-    };
-    Action.DeleteCategory = function(category) {
-        return $http({
-            method: 'DELETE',
-            url: 'http://localhost:8080/deleteCategorias',
-            headers: { 'Authorization': 'Bearer ' + session_id },
-            data: {
-                deleteNameCategoria: category.name,
-            }
-        });
-    }
-    Action.UpdateCategory = function(category) {
-        return $http({
-            method: 'PATCH',
-            url: 'http://localhost:8080/categories',
-            headers: { 'Authorization': 'Bearer ' + session_id },
-            data: {
-                category: category.name,
-            }
-        });
-    }
+   
+    
     Action.GetVideos = function() {
        
         return $http({
@@ -116,15 +57,52 @@ angular.module('adminApp').factory('adminService', ['$http', function($http) {
     Action.UpdateVideo = function(video) {
         return $http({
             method: 'PATCH',
-            url: 'http://localhost:8080/videos',
+            url: 'http://localhost:8080/patchVideo',
             headers: { 'Authorization': 'Bearer ' + session_id },
             data: {
-                video: video.name,
-                url: video.url,
-                category: video.category
+                newPatchUrlDeVideo :video.url,
+                newPatchNameDeVideo :video.name,
+                newPatchCategoriaDeVideo :video.category,
+                PatchIdDeVideo : video.id,
+  
             }
         });
     }
+
+    Action.CreateCategory = function(category) {
+        return $http({
+            method: 'POST',
+            url: 'http://localhost:8080/postCategorias',
+            headers: { 'Authorization': 'Bearer ' + session_id },
+            data: {
+                nameCategoria: category.name,
+            }
+        });
+    };
+
+    Action.DeleteCategory = function(category) {
+         console.log(category.name);
+        return $http({
+            method: 'DELETE',
+            url: 'http://localhost:8080/deleteCategorias',
+            headers: { 'Authorization': 'Bearer ' + session_id },
+            params:{deleteNameCategoria: category.name}
+             
+        });
+    } 
+    Action.UpdateCategory = function(category) {
+        return $http({
+            method: 'PATCH',
+            url: 'http://localhost:8080/patchCategorias',
+            headers: { 'Authorization': 'Bearer ' + session_id },
+            data: {
+                newNameCategoria :category.NewName,
+                PatchIdCategoria : category.id,
+  
+            }
+        });
+    }
+ 
 
     
     return Action;

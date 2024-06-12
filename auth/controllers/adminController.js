@@ -99,16 +99,15 @@ angular.module('adminApp')
     };
 
     $scope.modificarVideo = function() {
-        adminService.modificarVideo($scope.video)
+        $scope.video.id = $scope.Videos.find(video => video.title === $scope.video.title).id;
+        console.log($scope.video);
+
+        adminService.UpdateVideo($scope.video)
         .then(function(response) {
             console.log(response);
-            if (response.data.success) {
-                $scope.GetVideos();
-                $scope.alert = 'Video actualizado correctamente';
-                $scope.video={};
-            }else{
-                $scope.error = 'Error al actualizar video' + response.data.message;
-            }
+            $scope.GetVideos();
+            $scope.alert = 'Video modificado correctamente';
+            $scope.video={};
             
         })
         .catch(function(error) {
@@ -117,9 +116,51 @@ angular.module('adminApp')
         });
     } ;
 
+    $scope.CreateCategory = function() {
+        adminService.CreateCategory($scope.category)
+        .then(function(response) {
+            console.log(response);
+            $scope.GetCategories();
+            $scope.alert = 'Categoria creada correctamente';
+            $scope.category={};
+        })
+        .catch(function(error) {
+            $scope.error = 'Error al crear categoria' + error.message;
+            console.log(error.message);
+        });
 
+    }
 
+    $scope.deleteCategory = function() {
+        adminService.DeleteCategory($scope.category)
+        .then(function(response) {
+            console.log(response);
+            $scope.GetCategories();
+            $scope.alert = response.data.msg;
+            $scope.category={};
+        })
+        .catch(function(error) {
+            $scope.error = 'Error al eliminar categoria' + error.message;
+            console.log(error.message);
+        });
+    }
 
+    $scope.modificarCategory = function() {
+        $scope.category.id = $scope.Categorias.find(category => category.name === $scope.category.name).id;
+        console.log($scope.category);
+
+        adminService.UpdateCategory($scope.category)
+        .then(function(response) {
+            console.log(response);
+            $scope.GetCategories();
+            $scope.alert = 'Categoria modificada correctamente';
+            $scope.category={};
+        })
+        .catch(function(error) {
+            $scope.error = 'Error al actualizar categoria' + error.message;
+            console.log(error.message);
+        });
+    } ;
     $scope.logout = function() { 
         adminService.logout().then(function() {
             $sessionStorage.removeItem('sessionId');
@@ -128,6 +169,7 @@ angular.module('adminApp')
             $scope.error = error.message;
         });
     };
+    
 
 
 

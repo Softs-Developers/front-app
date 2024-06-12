@@ -105,43 +105,49 @@
                 <button type="submit" class="btn btn-danger">ELIMINAR</button>
             </form>
             <!---------- CATEGORIAS FORM      -------------->
-            <form id="formCrearCategorias" style="display:none ">
+            <form id="formCrearCategorias" style="display:none " ng-submit="CreateCategory()">
                 <div class="mb-3">
                     <h2>Crear Categoria</h2>
                     <label for="formCrearCategorias">introduzca nombre categoria </label>
-                    <input type="text" class="form-control" id="NombreNuevaCategoria" placeholder="escriba aqui">
+                    <input type="text" class="form-control" id="NombreNuevaCategoria" placeholder="escriba aqui"ng-model="category.name">
                     <button type="submit" class="btn btn-primary">Crear Categoria</button>
                 </div>
             </form>
-            <form id="formModificarCategorias" style="display:none ">
+            <form id="formModificarCategorias" style="display:none " ng-submit="modificarCategory()">
                 <div class="mb-3">
                     <h2>Modificar Categoria</h2>
                     <label for="nombreCategoriaCambiar" class="form-label">Nombre Categoria a cambiar</label>
-                    <input  id="nombreCategoriaCambiar" class="form-control" list="datalistOptions2"  placeholder="Type to search...">
-                    <datalist id="datalistOptions2">
-                        <div 
-                        id="DataListCategoria1">
-
-                        </div>
+                    <input  id="nombreCategoriaCambiar" class="form-control" list="modificarCAt"  placeholder="Type to search..."ng-model="category.name">
+                    <datalist id="modificarCAt">
+                         
+                        <div ng-repeat=" x in Categorias">   
+                            <option value="{{x.name}}"></option>
+                             
+                             
+                            </div>
                         
                     
 
                     </datalist>
                     <label for="NuevoNombreCategoria" class="form-label">Nuevo Nombre</label>
-                    <input id="NuevoNombreCategoria"class="form-control" type="text" aria-label="default input example">
+                    <input id="NuevoNombreCategoria"class="form-control" type="text" aria-label="default input example" ng-model="category.NewName">
                 </div>
                 
                 <button type="submit" class="btn btn-warning">Modificar Categoria</button>
             </form>
-            <form id="formDeleteCategorias" style="display:none ">
+            <form id="formDeleteCategorias" style="display:none " ng-submit="deleteCategory()">
                 <div class="mb-3">
                     <h2>Elimiar Categoria </h2>
-                    <input id="nombreCategoriaEliminar" class="form-control" list="datalistOptions2" class="NombreDeusuarios" placeholder="Type to search...">
-                    <datalist id="datalistOptions2">
-                        <div 
-                        id="DataListCategoria2">
-
-                        </div>
+                    <input id="nombreCategoriaEliminar" class="form-control" list="EliminarCAt" class="NombreDeusuarios" placeholder="Type to search..." ng-model="category.name">
+                    <datalist id="EliminarCAt">
+                         
+                        
+                        <div ng-repeat=" x in Categorias">   
+                            <option value="{{x.name}}"></option>
+                             
+                             
+                            </div>
+                       
                         
                     
 
@@ -185,7 +191,7 @@
                     <h2>Modificar Video</h2>
                    
                     <label for="nombreVideoCambiar" class="form-label">Nombre Video a cambiar</label>
-                    <input  id="nombreVideoCambiar" class="form-control" list="datalistOptions3"  placeholder="Type to search..."ng-model="video.oldName">
+                    <input  id="nombreVideoCambiar" class="form-control" list="datalistOptions3"  placeholder="Type to search..."ng-model="video.title">
                     <datalist id="datalistOptions3">
                         <div ng-repeat=" x in Videos">   
                             <option value="{{x.title}}"></option>
@@ -197,13 +203,26 @@
                     </datalist>
 
                     <label for="NuevoNombreVideo" class="form-label ">Nuevo Nombre</label>
-                    <input id="NuevoNombreVideo"class="form-control" type="text" aria-label="default input example" ng-model="video.newName">
+                    <input id="NuevoNombreVideo"class="form-control" type="text" aria-label="default input example" ng-model="video.name">
                     <label for="NuevoURLVideo" class="form-label ">Nueva URL</label>
-                    <input id="NuevaURLVideo"class="form-control" type="text" aria-label="default input example" ng-model="video.newURL">
+                    <input id="NuevaURLVideo"class="form-control" type="text" aria-label="default input example" ng-model="video.url">
+                    <label for="NuevaCategoriaVIdeo" class="form-label ">Nueva categoria</label>
+                    <input id="NuevaCategoriaVIdeo"class="form-control" list="datalistOptions344" type="text" aria-label="default input example" ng-model="video.category">
+                    <datalist id="datalistOptions344">
+                        <div ng-repeat=" x in Categorias">   
+                            <option value="{{x.name}}"></option>
+                           
+                             
+                        </div>  
+                    </datalist>
                     <button type="submit" class="btn btn-warning">Modificar Video</button>
                     <div class="alert alert-info" role="alert">
-                        Para saber que videos hay , pulsa en "Informacion"!!!.
+                        Para saber que videos hay , pulsa en "Informacion de Videos"!!!.
                       </div>
+                    <div class="alert alert-info " role="alert">
+                        Para saber que categorias hay , pulsa en "Informacion de Categorias"!!!.
+                      </div>
+                    
                 </div>
              </form>       
 

@@ -104,15 +104,15 @@ angular.module('adminApp').factory('adminService', ['$http', function($http) {
         });
     }
     Action.DeleteVideo = function(video) {
+         
         return $http({
             method: 'DELETE',
             url: 'http://localhost:8080/deleteVideos',
             headers: { 'Authorization': 'Bearer ' + session_id },
-            data: {
-                deleteNameVideo :  video.title
-            }
+            params:{deleteNameVideo: video.title}
+             
         });
-    }
+    } 
     Action.UpdateVideo = function(video) {
         return $http({
             method: 'PATCH',

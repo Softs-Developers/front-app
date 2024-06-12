@@ -84,24 +84,40 @@ angular.module('adminApp')
     };
     $scope.deleteVideo = function() {
         adminService.DeleteVideo($scope.video)
-      
+         
         .then(function(response) {
-            if (response.data.success) {
+             
                 $scope.GetVideos();
-                $scope.alert = 'Video eliminado correctamente';
+                $scope.alert = response.data.msg;
                 $scope.video={};
-            }else{
-                $scope.error = 'Error al eliminar video' + response.data.message;
-            }
-             
             
-             
         })
         .catch(function(error) {
             $scope.error = 'Error al eliminar video' + error.message;
             console.log(error.message);
         });
     };
+
+    $scope.modificarVideo = function() {
+        adminService.modificarVideo($scope.video)
+        .then(function(response) {
+            console.log(response);
+            if (response.data.success) {
+                $scope.GetVideos();
+                $scope.alert = 'Video actualizado correctamente';
+                $scope.video={};
+            }else{
+                $scope.error = 'Error al actualizar video' + response.data.message;
+            }
+            
+        })
+        .catch(function(error) {
+            $scope.error = 'Error al actualizar video' + error.message;
+            console.log(error.message);
+        });
+    } ;
+
+
 
 
     $scope.logout = function() { 

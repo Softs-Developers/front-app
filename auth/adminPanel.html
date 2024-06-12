@@ -180,23 +180,30 @@
                 </div>
             </form>
             
-            <form id="formModificarVideos" style="display:none ">
+            <form id="formModificarVideos" style="display:none " ng-submit="modificarVideo()">
                 <div class="mb-3">
                     <h2>Modificar Video</h2>
+                   
                     <label for="nombreVideoCambiar" class="form-label">Nombre Video a cambiar</label>
-                    <input  id="nombreVideoCambiar" class="form-control" list="datalistOptions3"  placeholder="Type to search...">
+                    <input  id="nombreVideoCambiar" class="form-control" list="datalistOptions3"  placeholder="Type to search..."ng-model="video.oldName">
                     <datalist id="datalistOptions3">
+                        <div ng-repeat=" x in Videos">   
+                            <option value="{{x.title}}"></option>
+                           
+                             
+                        </div>
+                     
                         
-                        
-                    
-
                     </datalist>
 
                     <label for="NuevoNombreVideo" class="form-label ">Nuevo Nombre</label>
-                    <input id="NuevoNombreVideo"class="form-control" type="text" aria-label="default input example">
+                    <input id="NuevoNombreVideo"class="form-control" type="text" aria-label="default input example" ng-model="video.newName">
                     <label for="NuevoURLVideo" class="form-label ">Nueva URL</label>
-                    <input id="NuevaURLVideo"class="form-control" type="text" aria-label="default input example">
+                    <input id="NuevaURLVideo"class="form-control" type="text" aria-label="default input example" ng-model="video.newURL">
                     <button type="submit" class="btn btn-warning">Modificar Video</button>
+                    <div class="alert alert-info" role="alert">
+                        Para saber que videos hay , pulsa en "Informacion"!!!.
+                      </div>
                 </div>
              </form>       
 

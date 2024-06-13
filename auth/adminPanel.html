@@ -56,10 +56,10 @@
                 <div class="mb-3">
                     <h2>Crear Usuario</h2>
                     <label for="exampleInputEmail1" class="form-label">Nombre </label>
-                    <input id="Nombre"class="form-control" type="text" placeholder="Default input" aria-label="default input example" ng-model="user.name">
+                    <input id="Nombre" class="form-control" type="text" placeholder="Input por defecto" aria-label="ejemplo de input por defecto" ng-model="user.name">
                   <label for="exampleInputEmail1" class="form-label">Email address</label>
                   <input id="correo" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ng-model="user.mail">
-                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                  <div id="emailHelp" class="form-text">Nunca compartiremos tu correo electrónico con nadie más.</div>
                 </div>
                 <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">Password</label>
@@ -71,9 +71,7 @@
                     <option value="ADM">Administrator</option>
                 </select>
                 
-                <button type="submit" class="btn btn-primary">Crear usuario</button>
-              </form>
-              <form id="formModificarUser" style="display:none "ng-submit="updateUser()">
+                <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Crear usuario</button>            <form id="fmModificarUser" style="display:none "ng-submit="updateUser()">
                 <div class="mb-3">
                     <h2>Modificar Usuario</h2>
                     <label for="nombreUserCAmbiar" class="form-label">Nombre Usuario a cambiar</label>
@@ -123,16 +121,16 @@
             <form id="formCrearCategorias" style="display:none " ng-submit="CreateCategory()">
                 <div class="mb-3">
                     <h2>Crear Categoria</h2>
-                    <label for="formCrearCategorias">introduzca nombre categoria </label>
-                    <input type="text" class="form-control" id="NombreNuevaCategoria" placeholder="escriba aqui"ng-model="category.name">
-                    <button type="submit" class="btn btn-primary">Crear Categoria</button>
+                    <label for="formCrearCategorias">Introduzca nombre categoria </label>
+                    <input type="text" class="form-control" id="NombreNuevaCategoria" placeholder="Escriba aqui"ng-model="category.name">
+                    <button type="submit" class="btn btn-primary"style="margin-top: 20px;">Crear Categoria</button>
                 </div>
             </form>
             <form id="formModificarCategorias" style="display:none " ng-submit="modificarCategory()">
                 <div class="mb-3">
                     <h2>Modificar Categoria</h2>
                     <label for="nombreCategoriaCambiar" class="form-label">Nombre Categoria a cambiar</label>
-                    <input  id="nombreCategoriaCambiar" class="form-control" list="modificarCAt"  placeholder="Type to search..."ng-model="category.name">
+                    <input  id="nombreCategoriaCambiar" class="form-control" list="modificarCAt"  placeholder="Escriba la Categoria"ng-model="category.name">
                     <datalist id="modificarCAt">
                          
                         <div ng-repeat=" x in Categorias">   
@@ -169,7 +167,7 @@
                     </datalist>
                     
                 </div>
-                <div class="alert alert-info" role="alert">
+                <div class="alert alert-info" role="alert" style="margin-top: 20px;">
                     Para saber que categorias hay , pulsa en "Informacion"!!!.
                   </div>
                 <button type="submit" class="btn btn-danger">ELIMINAR</button>
@@ -179,11 +177,11 @@
             <form id="formCrearVideos" style="display:none " ng-submit="CreateVideo()">
                 <div class="mb-3">
                     <h2>Crear Video</h2>
-                    <label for="NombreNuevoVideo">introduzca nombre video </label>
-                    <input type="text" class="form-control" ng-model="video.name"  placeholder="escriba aqui">
+                    <label for="NombreNuevoVideo">Introduzca nombre video </label>
+                    <input type="text" class="form-control" ng-model="video.name"  placeholder="Escriba aqui">
 
-                    <label for="URLNuevoVideo">introduzca URL video </label>
-                    <input type="text" class="form-control"   ng-model="video.url" placeholder="escriba aqui">
+                    <label for="URLNuevoVideo">Introduzca URL video </label>
+                    <input type="text" class="form-control"   ng-model="video.url" placeholder="Escriba aqui">
 
                     <label for="formCrearVideos">Eliga categorias </label>
                     <input type="text" class="form-control" ng-model="video.category" list="DataListCrearVideoMostrarCategoria" aria-label="default input example">
@@ -197,7 +195,7 @@
                     </datalist>
                     
                    
-                    <button type="submit" class="btn btn-primary">Crear Video</button>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Crear Video</button>
                 </div>
             </form>
             
@@ -230,8 +228,8 @@
                              
                         </div>  
                     </datalist>
-                    <button type="submit" class="btn btn-warning">Modificar Video</button>
-                    <div class="alert alert-info" role="alert">
+                    <button type="submit" class="btn btn-warning"style="margin-top: 20px;">Modificar Video</button>
+                    <div class="alert alert-info" role="alert" style="margin-top: 20px;">
                         Para saber que videos hay , pulsa en "Informacion de Videos"!!!.
                       </div>
                     <div class="alert alert-info " role="alert">
@@ -286,7 +284,7 @@
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
-    <h2>VIDEOS<span class="badge text-bg-secondary">CRUD</span></h2>
+    <h2>Videos<span class="badge text-bg-secondary">CRUD</span></h2>
     <button  type="button" class="btn btn-primary btn-sm"onclick="crearVideos() " >Crear</button>
     
     <button type="button" class="btn btn-warning btn-sm " onclick="ModificarVideos()">Modificar</button>

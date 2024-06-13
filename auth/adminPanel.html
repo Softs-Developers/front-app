@@ -33,7 +33,9 @@
                 <button class="btn btn-success me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Opciones de administrador </button>
                 <button class="btn btn-danger" type="button" ng-click="logout()">Logout</button>
             </div>
+
          </div>
+
 
 
 
@@ -45,6 +47,7 @@
                 <img src="media/logo2.png" alt="Logo de tu empresa" class="img-fluid">
             </div>
           <!---------- USUARIOS FORM      -------------->
+
          
 
             <!--tabla para  mostrar los datos de Videos-->
@@ -141,6 +144,7 @@
                 <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Crear usuario</button> 
             </form>         
               <form id="formModificarUser" style="display:none "ng-submit="updateUser()">
+
                 <div class="mb-3">
                     <h2>Modificar Usuario</h2>
                     <label for="nombreUserCAmbiar" class="form-label">Nombre Usuario a cambiar</label>
@@ -191,8 +195,10 @@
                 <div class="mb-3">
                     <h2>Crear Categoria</h2>
                     <label for="formCrearCategorias">Introduzca nombre categoria </label>
+
                     <input type="text" class="form-control" id="NombreNuevaCategoria" placeholder="Escriba aqui"ng-model="category.name">
                     <button type="submit" class="btn btn-primary"style="margin-top: 20px;">Crear Categoria</button>
+
                 </div>
             </form>
             <form id="formModificarCategorias" style="display:none " ng-submit="modificarCategory()">
@@ -246,11 +252,12 @@
             <form id="formCrearVideos" style="display:none " ng-submit="CreateVideo()">
                 <div class="mb-3">
                     <h2>Crear Video</h2>
-                    <label for="NombreNuevoVideo">Introduzca nombre video </label>
+
                     <input type="text" class="form-control" ng-model="video.name"  placeholder="Escriba aqui">
 
                     <label for="URLNuevoVideo">Introduzca URL video </label>
                     <input type="text" class="form-control"   ng-model="video.url" placeholder="Escriba aqui">
+
 
                     <label for="formCrearVideos">Eliga categorias </label>
                     <input type="text" class="form-control" ng-model="video.category" list="DataListCrearVideoMostrarCategoria" aria-label="default input example">

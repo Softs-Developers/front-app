@@ -1,3 +1,4 @@
+
 // controllers/authController.js
 angular.module('adminApp')
 .controller('adminController', ['$scope', 'adminService', function($scope, adminService) {
@@ -94,9 +95,11 @@ angular.module('adminApp')
         })
         .catch(function(error) {
             $scope.error = 'Error al eliminar video' + error.message;
+
             console.log(error.message);
         });
     };
+
 
     $scope.modificarVideo = function() {
         $scope.video.id = $scope.Videos.find(video => video.title === $scope.video.title).id;
@@ -219,3 +222,4 @@ angular.module('adminApp')
 
      
 }]);
+

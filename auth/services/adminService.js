@@ -10,6 +10,7 @@ angular.module('adminApp').factory('adminService', ['$http', function($http) {
             session_id: session_id,
         });
     };
+
     
     
 
@@ -19,6 +20,7 @@ angular.module('adminApp').factory('adminService', ['$http', function($http) {
             url: 'http://localhost:8080/getCategorias',
             headers: { 'Authorization': 'Bearer ' + session_id },
              
+
         });
     };
    
@@ -68,6 +70,7 @@ angular.module('adminApp').factory('adminService', ['$http', function($http) {
             }
         });
     }
+
 
     Action.CreateCategory = function(category) {
         return $http({

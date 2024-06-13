@@ -16,6 +16,11 @@ const formCrearUser= document.getElementById("formCrearUser");
 const formModificarUser= document.getElementById("formModificarUser"); 
 const formEliminarUser= document.getElementById("formDeleteUser");
 // --------Div mostrar info-----------------//
+const InfoVideos = document.getElementById("InfoVideos");
+const InfoCat = document.getElementById("InfoCat");
+const InfoUser = document.getElementById("InfoUser");
+
+
 
 const alerta = document.getElementById("alerta");
 //userss
@@ -29,7 +34,51 @@ const mostrarCategoria2 = document.getElementById("DataListCategoria2");
 const DataListCrearVideoMostrarCategoria=document.getElementById("DataListCrearVideoMostrarCategoria");
 const mostrarVideoModificar = document.getElementById("datalistOptions3");
  
+var cont444=0;
+async function infouser() {
+  if(cont444%2==0){
+    InfoUser.style.display = "none";
+    cont444++;
+  }else{
+    InfoUser.style.display = "block";
+    cont444++;
+  }
 
+}
+
+var cont333=0;
+async function infoCat() {
+  if(cont333%2==0){
+    InfoCat.style.display = "none";
+    cont333++;
+  }else{
+    InfoCat.style.display = "block";
+    cont333++;
+  }
+
+}
+var cont222=0;
+async function infoVideos() {
+  if(cont222%2==0){
+    InfoVideos.style.display = "none";
+    cont222++;
+  }else{
+    InfoVideos.style.display = "block";
+    cont222++;
+  }
+
+}
+var cont=1;
+async function infouser() {
+  if(cont%2==0){
+    InfoUser.style.display = "none";
+    cont++;
+  }else{
+    InfoUser.style.display = "block";
+    cont++;
+  }
+
+}
   
   var cont=1;
   async function deleteUsuarios() {

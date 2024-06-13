@@ -46,6 +46,73 @@
             </div>
           <!---------- USUARIOS FORM      -------------->
          
+
+            <!--tabla para  mostrar los datos de Videos-->
+            <div id="InfoVideos" style="display:none"> 
+            <h2>Informacion de Videos</h2>
+            <table class="table-sm">
+                
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">URL</th>
+                    <th scope="col">Categoria</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="x in Videos">
+                    <th scope="row">{{x.id}}</th>
+                    <td>{{x.title}}</td>
+                    <td>{{x.url}}</td>
+                    <td>{{x.categoria}}</td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--tabla para  mostrar los datos de Categorias-->
+            <div id="InfoCat" style="display:none"> 
+            <h2>Informacion de Categorias</h2>
+            <table class="table-sm">
+                
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="x in Categorias">
+                    <th scope="row">{{x.id}}</th>
+                    <td>{{x.name}}</td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--tabla para  mostrar los datos de Usuarios-->
+            <div id="InfoUser" style="display:none">
+            <h2>Informacion de Usuarios</h2>
+            <table class="table-sm">
+                
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Rol</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="x in Usuarios">
+                    <th scope="row">{{x.id}}</th>
+                    <td>{{x.name}}</td>
+                    <td>{{x.mail}}</td>
+                    <td>{{x.role}}</td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+
             <!-- div para alertas general-->
             <div class="alert-info alert-dismissible " ng-model="alert">
                 {{alert}}
@@ -71,7 +138,9 @@
                     <option value="ADM">Administrator</option>
                 </select>
                 
-                <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Crear usuario</button>            <form id="fmModificarUser" style="display:none "ng-submit="updateUser()">
+                <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Crear usuario</button> 
+            </form>         
+              <form id="formModificarUser" style="display:none "ng-submit="updateUser()">
                 <div class="mb-3">
                     <h2>Modificar Usuario</h2>
                     <label for="nombreUserCAmbiar" class="form-label">Nombre Usuario a cambiar</label>
@@ -290,7 +359,7 @@
     <button type="button" class="btn btn-warning btn-sm " onclick="ModificarVideos()">Modificar</button>
     <br>
     <button type="button" class="btn btn-danger btn-sm" onclick="DeletVideos()">Elimiar</button>
-    <button type="button" class="btn btn-secondary btn-sm"ng-click="GetVideos()">información</button>
+    <button type="button" class="btn btn-secondary btn-sm"ng-click="GetVideos()" onclick="infoVideos()">información</button>
    
     
     
@@ -300,7 +369,7 @@
     <button type="button" class="btn btn-warning btn-sm "onclick="modificarCategorias()">Modificar</button>
     <br>
     <button type="button" class="btn btn-danger btn-sm"onclick="deleteCategorias()">Elimiar</button>
-    <button type="button" class="btn btn-secondary btn-sm"ng-click="GetCategories()">información  </button>
+    <button type="button" class="btn btn-secondary btn-sm"ng-click="GetCategories()" onclick="infoCat()">información  </button>
      
     
     <h2>Usuarios<span class="badge text-bg-secondary">CRUD</span></h2>
@@ -309,7 +378,7 @@
     <button type="button" class="btn btn-warning btn-sm "onclick="modificarUsuarios()">Modificar</button>
     <br>
     <button type="button" class="btn btn-danger btn-sm"onclick="deleteUsuarios()">Elimiar</button>
-    <button type="button" class="btn btn-secondary btn-sm"ng-click="GetUsers()">información</button>
+    <button type="button" class="btn btn-secondary btn-sm"ng-click="GetUsers()" onclick="infouser()">información</button>
      
 
  

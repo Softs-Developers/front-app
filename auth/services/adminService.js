@@ -102,8 +102,52 @@ angular.module('adminApp').factory('adminService', ['$http', function($http) {
             }
         });
     }
- 
-
+    Action.createUser = function(user) {
+        return $http({
+            method: 'POST',
+            url: 'http://localhost:8080/postUsuario',
+            headers: { 'Authorization': 'Bearer ' + session_id },
+            data: {
+                postNameDeUsuario: user.name,
+                postMailDeUsuario: user.mail,
+                postPasswdDelUsuario: user.password,
+                postRolDeUsuario: user.role
+            }
+        });
+    }
+    Action.updateUser = function(user) {
+        return $http({
+            method: 'PATCH',
+            url: 'http://localhost:8080/patchUsuario',
+            headers: { 'Authorization': 'Bearer ' + session_id },
+            data: {
+                newpatchNameDeUsuario :user.newName,
+                newpatchMailDeUsuario :user.newMail,
+                newpatchPasswdDelUsuario :user.newPassword,
+                newpatchROLDelUsuario :user.newRole,
+                patchIdUsuario : user.id,
+  
+            }
+        });
+    }
+    Action.DeleteUser = function(user) {
+        return $http({
+            method: 'DELETE',
+            url: 'http://localhost:8080/deleteUsuarios',
+            headers: { 'Authorization': 'Bearer ' + session_id },
+            params:{deleteIDUsuario: user.id}
+             
+        });
+    }
+    Action.logout = function(sessionId) {
+        return $http({
+            method: 'Delete',
+            url: 'http://localhost:8080/logout',
+            headers: { 'Authorization': 'Bearer ' + session_id },
+            params:{logoutIDUsuario: sessionId}
+        });
+    }
     
     return Action;
+   
 }]);

@@ -162,14 +162,57 @@ angular.module('adminApp')
         });
     } ;
     $scope.logout = function() { 
-        adminService.logout().then(function() {
-            $sessionStorage.removeItem('sessionId');
-            window.location.href = '/login';
+        adminService.logout(sessionId)
+        .then(function(response) {
+            sessionStorage.removeItem('sessionId');
+            console.log(response);
+            window.location.href = 'index.html';
         }).catch(function(error) {
             $scope.error = error.message;
         });
     };
-    
+    $scope.createUser = function() {
+        adminService.createUser($scope.user)
+        .then(function(response) {
+            console.log(response);
+            $scope.GetUsers();
+            $scope.alert = 'Usuario creado correctamente';
+            $scope.user={};
+        })
+        .catch(function(error) {
+            $scope.error = 'Error al crear usuario' + error.message;
+            console.log(error.message);
+        });
+    }
+    $scope.updateUser = function() {
+        $scope.user.id = $scope.Usuarios.find(user => user.name === $scope.user.name).user_id;
+        adminService.updateUser($scope.user)
+        .then(function(response) {
+            console.log(response);
+            $scope.GetUsers();
+            $scope.alert = 'Usuario modificado correctamente';
+            $scope.user={};
+        })
+        .catch(function(error) {
+            $scope.error = 'Error al actualizar usuario' + error.message;
+            console.log(error.message);
+        });
+    }
+    $scope.deleteUser  = function() {
+        $scope.user.id = $scope.Usuarios.find(user => user.name === $scope.user.name).user_id;
+         
+        adminService.DeleteUser($scope.user)
+        .then(function(response) {
+            console.log(response);
+            $scope.GetUsers();
+            $scope.alert = response.data.msg;
+            $scope.user={};
+        })
+        .catch(function(error) {
+            $scope.error = 'Error al eliminar usuario' + error.message;
+            console.log(error.message);
+        });
+    }
 
 
 

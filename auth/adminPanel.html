@@ -52,51 +52,66 @@
               </div>
 
 
-            <form id="formCrearUser" style="display:none ">
+            <form id="formCrearUser" style="display:none " ng-submit="CrearUsuario">
                 <div class="mb-3">
                     <h2>Crear Usuario</h2>
                     <label for="exampleInputEmail1" class="form-label">Nombre </label>
-                    <input id="Nombre"class="form-control" type="text" placeholder="Default input" aria-label="default input example">
+                    <input id="Nombre"class="form-control" type="text" placeholder="Default input" aria-label="default input example" ng-model="user.name">
                   <label for="exampleInputEmail1" class="form-label">Email address</label>
-                  <input id="correo" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <input id="correo" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ng-model="user.mail">
                   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">Password</label>
-                  <input id="password" type="password" class="form-control" id="exampleInputPassword1">
+                  <input id="password" type="password" class="form-control" id="exampleInputPassword1" ng-model="user.password">
                 </div>
+                <label for="userType2" class="form-label">User Type</label>
+                <select id="userType2" class="form-select" aria-label="Default select example" ng-model="user.role">
+                    <option value="user">Normal User</option>
+                    <option value="ADM">Administrator</option>
+                </select>
                 
                 <button type="submit" class="btn btn-primary">Crear usuario</button>
               </form>
-              <form id="formModificarUser" style="display:none ">
+              <form id="formModificarUser" style="display:none "ng-submit="updateUser()">
                 <div class="mb-3">
                     <h2>Modificar Usuario</h2>
                     <label for="nombreUserCAmbiar" class="form-label">Nombre Usuario a cambiar</label>
-                    <input  id="nombreUserCAmbiar" class="form-control" list="datalistOptions" id="categoria" placeholder="Type to search...">
-                    <datalist id="datalistOptions">
-                        <div 
-                        id="DataListUser1">
-
-                        </div>
+                    <input  id="nombreUserCAmbiar" class="form-control" list="dataUSe" id="categoria" placeholder="Type to search..."ng-model="user.name">
+                    <datalist id="dataUSe">
+                        <div ng-repeat=" x in Usuarios">   
+                            <option value="{{x.name}}"></option>
+                             
+                             
+                            </div>
                     </datalist>
                     <label for="NuevoNombre" class="form-label">Nuevo Nombre</label>
-                    <input id="NuevoNombre"class="form-control" type="text" placeholder="Default input" aria-label="default input example">
+                    <input id="NuevoNombre"class="form-control" type="text" placeholder="Default input" aria-label="default input example" ng-model="user.newName">
+                    <label for="NuevoCorreo" class="form-label">Nuevo Correo</label>
+                    <input id="NuevoCorreo" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ng-model="user.newMail">
+                    <label for="NuevoPassword" class="form-label">Nueva Password</label>
+                    <input id="NuevoPassword" type="password" class="form-control" id="exampleInputPassword1" ng-model="user.newPassword">
+                    <label for="userType" class="form-label"> User Type  </label>
+                    <select id="userType" class="form-select" aria-label="Default select example" ng-model="user.newRole">
+                        <option value="user">Normal User</option>
+                        <option value="ADM">Administrator</option>
+                    </select>
                 </div>
                 
                 <button type="submit" class="btn btn-warning">Modificar usuario</button>
             </form>
               
                 
-            <form id="formDeleteUser" style="display:none ">
+            <form id="formDeleteUser" style="display:none " ng-submit="deleteUser()">
                 <div class="mb-3">
                     <h2>Elimiar Usuario </h2>
-                    <input id="nombreUserEliminar" class="form-control" list="datalistOptions" class="NombreDeusuarios" placeholder="Type to search...">
-                    <datalist id="datalistOptions">
-                        <div 
-                        id="DataListUser2">
-
-                        </div>
-                        
+                    <input id="nombreUserEliminar" class="form-control" list="dataus" class="NombreDeusuarios" placeholder="Type to search..." ng-model="user.name">
+                    <datalist id="dataus">
+                        <div ng-repeat=" x in Usuarios">   
+                            <option value="{{x.name}}"></option>
+                             
+                             
+                            </div>
                     
 
                     </datalist>

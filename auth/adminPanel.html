@@ -13,14 +13,14 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="lib/angular-route.min.js"></script>    
-    <script src="app.js"></script>
+    <script src="app2.js"></script>
     <script src="controllers/adminController.js"></script>
     <script src="services/adminService.js"></script>
 
     <title>Dashboard</title>
 </head>
 
-<body>
+<body ng-controller="adminController">
 
 
     <nav class="navbar navbar-dark bg-primary fixed-top">
@@ -33,67 +33,156 @@
                 <button class="btn btn-success me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Opciones de administrador </button>
                 <button class="btn btn-danger" type="button" ng-click="logout()">Logout</button>
             </div>
-        </div>
+
+         </div>
+
 
 
 
     </nav>
-<div ng-controller="adminController">
+ 
     <div class="container mt-5">
         <div class="row">
             <div class="col-12 text-center mb-4">
                 <img src="media/logo2.png" alt="Logo de tu empresa" class="img-fluid">
             </div>
           <!---------- USUARIOS FORM      -------------->
-                <form id="formCrearUser" style="display:none ">
-                    <h2>Crear Usuario</h2>
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Nombre </label>
-                        <input id="Nombre" class="form-control" type="text" ng-model="user.nombre" placeholder="Default input" aria-label="default input example">
-                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input id="correo" type="email" ng-model="user.correo"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input id="password" type="password" ng-model="user.password"class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Crear usuario</button>
-                </form>       
+
+         
+
+            <!--tabla para  mostrar los datos de Videos-->
+            <div id="InfoVideos" style="display:none"> 
+            <h2>Informacion de Videos</h2>
+            <table class="table-sm">
+                
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">URL</th>
+                    <th scope="col">Categoria</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="x in Videos">
+                    <th scope="row">{{x.id}}</th>
+                    <td>{{x.title}}</td>
+                    <td>{{x.url}}</td>
+                    <td>{{x.categoria}}</td>
+                    </tr>
+                </tbody>
+              </table>
             </div>
-        </div>
-              <form id="formModificarUser" style="display:none ">
+            <!--tabla para  mostrar los datos de Categorias-->
+            <div id="InfoCat" style="display:none"> 
+            <h2>Informacion de Categorias</h2>
+            <table class="table-sm">
+                
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="x in Categorias">
+                    <th scope="row">{{x.id}}</th>
+                    <td>{{x.name}}</td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--tabla para  mostrar los datos de Usuarios-->
+            <div id="InfoUser" style="display:none">
+            <h2>Informacion de Usuarios</h2>
+            <table class="table-sm">
+                
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Rol</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="x in Usuarios">
+                    <th scope="row">{{x.id}}</th>
+                    <td>{{x.name}}</td>
+                    <td>{{x.mail}}</td>
+                    <td>{{x.role}}</td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- div para alertas general-->
+            <div class="alert-info alert-dismissible " ng-model="alert">
+                {{alert}}
+              </div>
+
+
+            <form id="formCrearUser" style="display:none " ng-submit="CrearUsuario">
+                <div class="mb-3">
+                    <h2>Crear Usuario</h2>
+                    <label for="exampleInputEmail1" class="form-label">Nombre </label>
+                    <input id="Nombre" class="form-control" type="text" placeholder="Input por defecto" aria-label="ejemplo de input por defecto" ng-model="user.name">
+                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                  <input id="correo" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ng-model="user.mail">
+                  <div id="emailHelp" class="form-text">Nunca compartiremos tu correo electrónico con nadie más.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input id="password" type="password" class="form-control" id="exampleInputPassword1" ng-model="user.password">
+                </div>
+                <label for="userType2" class="form-label">User Type</label>
+                <select id="userType2" class="form-select" aria-label="Default select example" ng-model="user.role">
+                    <option value="user">Normal User</option>
+                    <option value="ADM">Administrator</option>
+                </select>
+                
+                <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Crear usuario</button> 
+            </form>         
+              <form id="formModificarUser" style="display:none "ng-submit="updateUser()">
+
                 <div class="mb-3">
                     <h2>Modificar Usuario</h2>
                     <label for="nombreUserCAmbiar" class="form-label">Nombre Usuario a cambiar</label>
-                    <input  id="nombreUserCAmbiar" class="form-control" list="datalistOptions" id="categoria" placeholder="Type to search...">
-                    <datalist id="datalistOptions">
-                        <div 
-                        id="DataListUser1">
-
-                        </div>
-                        
-                    
-
+                    <input  id="nombreUserCAmbiar" class="form-control" list="dataUSe" id="categoria" placeholder="Type to search..."ng-model="user.name">
+                    <datalist id="dataUSe">
+                        <div ng-repeat=" x in Usuarios">   
+                            <option value="{{x.name}}"></option>
+                             
+                             
+                            </div>
                     </datalist>
                     <label for="NuevoNombre" class="form-label">Nuevo Nombre</label>
-                    <input id="NuevoNombre"class="form-control" type="text" placeholder="Default input" aria-label="default input example">
+                    <input id="NuevoNombre"class="form-control" type="text" placeholder="Default input" aria-label="default input example" ng-model="user.newName">
+                    <label for="NuevoCorreo" class="form-label">Nuevo Correo</label>
+                    <input id="NuevoCorreo" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ng-model="user.newMail">
+                    <label for="NuevoPassword" class="form-label">Nueva Password</label>
+                    <input id="NuevoPassword" type="password" class="form-control" id="exampleInputPassword1" ng-model="user.newPassword">
+                    <label for="userType" class="form-label"> User Type  </label>
+                    <select id="userType" class="form-select" aria-label="Default select example" ng-model="user.newRole">
+                        <option value="user">Normal User</option>
+                        <option value="ADM">Administrator</option>
+                    </select>
                 </div>
                 
                 <button type="submit" class="btn btn-warning">Modificar usuario</button>
             </form>
               
                 
-            <form id="formDeleteUser" style="display:none ">
+            <form id="formDeleteUser" style="display:none " ng-submit="deleteUser()">
                 <div class="mb-3">
                     <h2>Elimiar Usuario </h2>
-                    <input id="nombreUserEliminar" class="form-control" list="datalistOptions" class="NombreDeusuarios" placeholder="Type to search...">
-                    <datalist id="datalistOptions">
-                        <div 
-                        id="DataListUser2">
-
-                        </div>
-                        
+                    <input id="nombreUserEliminar" class="form-control" list="dataus" class="NombreDeusuarios" placeholder="Type to search..." ng-model="user.name">
+                    <datalist id="dataus">
+                        <div ng-repeat=" x in Usuarios">   
+                            <option value="{{x.name}}"></option>
+                             
+                             
+                            </div>
                     
 
                     </datalist>
@@ -102,103 +191,140 @@
                 <button type="submit" class="btn btn-danger">ELIMINAR</button>
             </form>
             <!---------- CATEGORIAS FORM      -------------->
-            <form id="formCrearCategorias" style="display:none ">
+            <form id="formCrearCategorias" style="display:none " ng-submit="CreateCategory()">
                 <div class="mb-3">
                     <h2>Crear Categoria</h2>
                     <label for="formCrearCategorias">Introduzca nombre categoria </label>
-                    <input type="text" class="form-control" id="NombreNuevaCategoria" placeholder="escriba aqui">
-                    <button type="submit" class="btn btn-primary">Crear Categoria</button>
+
+                    <input type="text" class="form-control" id="NombreNuevaCategoria" placeholder="Escriba aqui"ng-model="category.name">
+                    <button type="submit" class="btn btn-primary"style="margin-top: 20px;">Crear Categoria</button>
+
                 </div>
             </form>
-            <form id="formModificarCategorias" style="display:none ">
+            <form id="formModificarCategorias" style="display:none " ng-submit="modificarCategory()">
                 <div class="mb-3">
                     <h2>Modificar Categoria</h2>
                     <label for="nombreCategoriaCambiar" class="form-label">Nombre Categoria a cambiar</label>
-                    <input  id="nombreCategoriaCambiar" class="form-control" list="datalistOptions2"  placeholder="Type to search...">
-                    <datalist id="datalistOptions2">
-                        <div 
-                        id="DataListCategoria1">
-
-                        </div>
+                    <input  id="nombreCategoriaCambiar" class="form-control" list="modificarCAt"  placeholder="Escriba la Categoria"ng-model="category.name">
+                    <datalist id="modificarCAt">
+                         
+                        <div ng-repeat=" x in Categorias">   
+                            <option value="{{x.name}}"></option>
+                             
+                             
+                            </div>
                         
                     
 
                     </datalist>
                     <label for="NuevoNombreCategoria" class="form-label">Nuevo Nombre</label>
-                    <input id="NuevoNombreCategoria"class="form-control" type="text" aria-label="default input example">
+                    <input id="NuevoNombreCategoria"class="form-control" type="text" aria-label="default input example" ng-model="category.NewName">
                 </div>
                 
                 <button type="submit" class="btn btn-warning">Modificar Categoria</button>
             </form>
-            <form id="formDeleteCategorias" style="display:none ">
+            <form id="formDeleteCategorias" style="display:none " ng-submit="deleteCategory()">
                 <div class="mb-3">
                     <h2>Elimiar Categoria </h2>
-                    <input id="nombreCategoriaEliminar" class="form-control" list="datalistOptions2" class="NombreDeusuarios" placeholder="Type to search...">
-                    <datalist id="datalistOptions2">
-                        <div 
-                        id="DataListCategoria2">
-
-                        </div>
+                    <input id="nombreCategoriaEliminar" class="form-control" list="EliminarCAt" class="NombreDeusuarios" placeholder="Type to search..." ng-model="category.name">
+                    <datalist id="EliminarCAt">
+                         
+                        
+                        <div ng-repeat=" x in Categorias">   
+                            <option value="{{x.name}}"></option>
+                             
+                             
+                            </div>
+                       
                         
                     
 
                     </datalist>
                     
                 </div>
-                <div class="alert alert-info" role="alert">
+                <div class="alert alert-info" role="alert" style="margin-top: 20px;">
                     Para saber que categorias hay , pulsa en "Informacion"!!!.
                   </div>
                 <button type="submit" class="btn btn-danger">ELIMINAR</button>
             
             <!---------- vIDEOS FORM      -------------->
             </form>
-            <form id="formCrearVideos" style="display:none ">
+            <form id="formCrearVideos" style="display:none " ng-submit="CreateVideo()">
                 <div class="mb-3">
                     <h2>Crear Video</h2>
-                    <label for="NombreNuevoVideo">Introduzca nombre video </label>
-                    <input type="text" class="form-control" id="NombreNuevoVideo" placeholder="escriba aqui">
+
+                    <input type="text" class="form-control" ng-model="video.name"  placeholder="Escriba aqui">
 
                     <label for="URLNuevoVideo">Introduzca URL video </label>
-                    <input type="text" class="form-control" id="URLNuevoVideo" placeholder="escriba aqui">
+                    <input type="text" class="form-control"   ng-model="video.url" placeholder="Escriba aqui">
+
 
                     <label for="formCrearVideos">Eliga categorias </label>
-                    <input type="text" class="form-control" id="CategoriaNuevoVideo" list="DataListCrearVideoMostrarCategoria" aria-label="default input example">
+                    <input type="text" class="form-control" ng-model="video.category" list="DataListCrearVideoMostrarCategoria" aria-label="default input example">
                     <datalist id="DataListCrearVideoMostrarCategoria" >
-                        
-                        
+                        <div ng-repeat=" x in Categorias">   
+                        <option value="{{x.name}}"></option>
+                         
+                         
+                        </div>
+                         
                     </datalist>
                     
                    
-                    <button type="submit" class="btn btn-primary">Crear Video</button>
-                
+                    <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Crear Video</button>
+                </div>
             </form>
             
-            <form id="formModificarVideos" style="display:none ">
+            <form id="formModificarVideos" style="display:none " ng-submit="modificarVideo()">
                 <div class="mb-3">
                     <h2>Modificar Video</h2>
+                   
                     <label for="nombreVideoCambiar" class="form-label">Nombre Video a cambiar</label>
-                    <input  id="nombreVideoCambiar" class="form-control" list="datalistOptions3"  placeholder="Type to search...">
+                    <input  id="nombreVideoCambiar" class="form-control" list="datalistOptions3"  placeholder="Type to search..."ng-model="video.title">
                     <datalist id="datalistOptions3">
+                        <div ng-repeat=" x in Videos">   
+                            <option value="{{x.title}}"></option>
+                           
+                             
+                        </div>
+                     
                         
-                        
-                    
-
                     </datalist>
 
                     <label for="NuevoNombreVideo" class="form-label ">Nuevo Nombre</label>
-                    <input id="NuevoNombreVideo"class="form-control" type="text" aria-label="default input example">
+                    <input id="NuevoNombreVideo"class="form-control" type="text" aria-label="default input example" ng-model="video.name">
                     <label for="NuevoURLVideo" class="form-label ">Nueva URL</label>
-                    <input id="NuevaURLVideo"class="form-control" type="text" aria-label="default input example">
-                    <button type="submit" class="btn btn-warning">Modificar Video</button>
+                    <input id="NuevaURLVideo"class="form-control" type="text" aria-label="default input example" ng-model="video.url">
+                    <label for="NuevaCategoriaVIdeo" class="form-label ">Nueva categoria</label>
+                    <input id="NuevaCategoriaVIdeo"class="form-control" list="datalistOptions344" type="text" aria-label="default input example" ng-model="video.category">
+                    <datalist id="datalistOptions344">
+                        <div ng-repeat=" x in Categorias">   
+                            <option value="{{x.name}}"></option>
+                           
+                             
+                        </div>  
+                    </datalist>
+                    <button type="submit" class="btn btn-warning"style="margin-top: 20px;">Modificar Video</button>
+                    <div class="alert alert-info" role="alert" style="margin-top: 20px;">
+                        Para saber que videos hay , pulsa en "Informacion de Videos"!!!.
+                      </div>
+                    <div class="alert alert-info " role="alert">
+                        Para saber que categorias hay , pulsa en "Informacion de Categorias"!!!.
+                      </div>
+                    
                 </div>
              </form>       
 
-            <form id="formDeleteVideos" style="display:none ">
+            <form id="formDeleteVideos" style="display:none " ng-submit="deleteVideo()">
                 <div class="mb-3">
                     <h2>Elimiar Video </h2>
-                    <input id="nombreVideoEliminar" class="form-control" list="datalistOptions3" class="NombreDeusuarios" placeholder="Type to search...">
-                    <datalist id="datalistOptions3">
-                       
+                    <input id="nombreVideoEliminar" class="form-control" list="datalistBorrarVideos" class="NombreDeusuarios" placeholder="Type to search..." ng-model="video.title">
+                    <datalist id="datalistBorrarVideos">
+                        <div ng-repeat=" x in Videos">   
+                            <option value="{{x.title}}"></option>
+                           
+                             
+                        </div>
                         
                     
 
@@ -210,10 +336,12 @@
                   </div>
                 <button type="submit" class="btn btn-danger">ELIMINAR</button> 
             </form>
-               
+            <div class="alert alert-danger" ng-if="error">
+                {{error}}
+             </div>
     </div>
      
-</div>
+
 
 
 
@@ -232,13 +360,13 @@
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
-    <h2>VIDEOS<span class="badge text-bg-secondary">CRUD</span></h2>
-    <button  type="button" class="btn btn-primary btn-sm" onclick="crearVideos()" >Crear</button>
+    <h2>Videos<span class="badge text-bg-secondary">CRUD</span></h2>
+    <button  type="button" class="btn btn-primary btn-sm"onclick="crearVideos() " >Crear</button>
     
     <button type="button" class="btn btn-warning btn-sm " onclick="ModificarVideos()">Modificar</button>
     <br>
     <button type="button" class="btn btn-danger btn-sm" onclick="DeletVideos()">Elimiar</button>
-    <button type="button" class="btn btn-secondary btn-sm"onclick="InfoVideos()">información</button>
+    <button type="button" class="btn btn-secondary btn-sm"ng-click="GetVideos()" onclick="infoVideos()">información</button>
    
     
     
@@ -248,7 +376,7 @@
     <button type="button" class="btn btn-warning btn-sm "onclick="modificarCategorias()">Modificar</button>
     <br>
     <button type="button" class="btn btn-danger btn-sm"onclick="deleteCategorias()">Elimiar</button>
-    <button type="button" class="btn btn-secondary btn-sm"onclick="infoCategorias()">información  </button>
+    <button type="button" class="btn btn-secondary btn-sm"ng-click="GetCategories()" onclick="infoCat()">información  </button>
      
     
     <h2>Usuarios<span class="badge text-bg-secondary">CRUD</span></h2>
@@ -257,11 +385,11 @@
     <button type="button" class="btn btn-warning btn-sm "onclick="modificarUsuarios()">Modificar</button>
     <br>
     <button type="button" class="btn btn-danger btn-sm"onclick="deleteUsuarios()">Elimiar</button>
-    <button type="button" class="btn btn-secondary btn-sm"onclick="infoUsuarios()">información</button>
+    <button type="button" class="btn btn-secondary btn-sm"ng-click="GetUsers()" onclick="infouser()">información</button>
      
 
-   
-  </div>
+ 
+ 
    
    
 </div>

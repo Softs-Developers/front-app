@@ -10,15 +10,16 @@ angular.module('authApp')
             console.log(response);
             if (response.data.token) {
               
-                localStorage.setItem('token', response.data.token);
-                sessionStorage.setItem('sessionId', response.data.sessionId);
+              //  localStorage.setItem('token', response.data.token); esto no tiene sentido xd
+                sessionStorage.setItem('sessionId', response.data.token);
                 // voy a adminPanel
+                console.log (response.data.token);
                 window.location.href = 'adminPanel.html';
                  
 
             } else { 
                 
-                $scope.error = 'Login failed debido a  ' + response.data.message;
+                $scope.error = 'Login failed debido a  ' + response.data.errormsg;
                 
             }
         })
